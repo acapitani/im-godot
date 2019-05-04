@@ -1,0 +1,111 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://tilesets/platform_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://lift/lift.tscn" type="PackedScene" id=2]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4, 100 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 4, 4 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 4, 74 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 68, 2 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 36, 2 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 76, 2 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 84, 2 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 28, 2 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 28, 2 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 92, 2 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 28, 2 )
+
+[node name="test_room" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color( 0.407843, 0.662745, 0.254902, 1 )
+polygon = PoolVector2Array( 0, 0, 320, 0, 320, 200, 0, 200 )
+
+[node name="platform" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 8, 8 )
+cell_quadrant_size = 8
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 39, 4, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, 327680, 0, 0, 393216, 0, 0, 393220, 3, 0, 393221, 5, 0, 393223, 5, 0, 393225, 5, 0, 393227, 5, 0, 393229, 5, 0, 393231, 5, 0, 393233, 5, 0, 393235, 5, 0, 393246, 3, 0, 393247, 5, 0, 393249, 5, 0, 393251, 5, 0, 393253, 5, 0, 393254, 3, 0, 393255, 2, 0, 458752, 0, 0, 458791, 4, 0, 524288, 0, 0, 524327, 4, 0, 589824, 0, 0, 589863, 4, 0, 655360, 0, 0, 655399, 4, 0, 720896, 0, 0, 720935, 4, 0, 786432, 0, 0, 786436, 3, 0, 786437, 5, 0, 786439, 5, 0, 786441, 5, 0, 786443, 5, 0, 786445, 5, 0, 786447, 5, 0, 786449, 5, 0, 786451, 5, 0, 786453, 5, 0, 786461, 3, 0, 786462, 5, 0, 786464, 5, 0, 786466, 5, 0, 786471, 4, 0, 851968, 0, 0, 852007, 4, 0, 917504, 0, 0, 917543, 4, 0, 983040, 0, 0, 983079, 4, 0, 1048576, 0, 0, 1048615, 4, 0, 1114112, 0, 0, 1114151, 4, 0, 1179648, 0, 0, 1179652, 3, 0, 1179653, 5, 0, 1179655, 5, 0, 1179657, 5, 0, 1179659, 5, 0, 1179661, 5, 0, 1179663, 5, 0, 1179665, 5, 0, 1179667, 5, 0, 1179669, 5, 0, 1179671, 5, 0, 1179677, 3, 0, 1179678, 5, 0, 1179680, 5, 0, 1179682, 5, 0, 1179687, 4, 0, 1245184, 0, 0, 1245223, 4, 0, 1310720, 0, 0, 1310759, 4, 0, 1376256, 0, 0, 1376295, 4, 0, 1441792, 0, 0, 1441831, 4, 0, 1507328, 0, 0, 1507367, 4, 0, 1572864, 0, 0, 1572868, 3, 0, 1572869, 5, 0, 1572871, 5, 0, 1572873, 5, 0, 1572875, 5, 0, 1572877, 5, 0, 1572879, 5, 0, 1572881, 5, 0, 1572883, 5, 0, 1572885, 5, 0, 1572887, 5, 0, 1572889, 5, 0, 1572893, 3, 0, 1572894, 5, 0, 1572896, 5, 0, 1572898, 5, 0, 1572903, 4, 0 )
+
+[node name="platforms_and_walls" type="StaticBody2D" parent="."]
+editor/display_folded = true
+
+[node name="wall_left" type="CollisionShape2D" parent="platforms_and_walls"]
+position = Vector2( 4, 100 )
+shape = SubResource( 1 )
+
+[node name="wall_right1" type="CollisionShape2D" parent="platforms_and_walls"]
+position = Vector2( 316, 4 )
+shape = SubResource( 2 )
+
+[node name="wall_right2" type="CollisionShape2D" parent="platforms_and_walls"]
+position = Vector2( 316, 124 )
+shape = SubResource( 3 )
+
+[node name="platform1" type="CollisionShape2D" parent="platforms_and_walls"]
+position = Vector2( 100, 52 )
+shape = SubResource( 4 )
+
+[node name="platform2" type="CollisionShape2D" parent="platforms_and_walls"]
+position = Vector2( 276, 52 )
+shape = SubResource( 5 )
+
+[node name="platform3" type="CollisionShape2D" parent="platforms_and_walls"]
+position = Vector2( 108, 100 )
+shape = SubResource( 6 )
+
+[node name="platform4" type="CollisionShape2D" parent="platforms_and_walls"]
+position = Vector2( 116, 148 )
+shape = SubResource( 7 )
+
+[node name="platform5" type="CollisionShape2D" parent="platforms_and_walls"]
+position = Vector2( 260, 100 )
+shape = SubResource( 8 )
+
+[node name="platform6" type="CollisionShape2D" parent="platforms_and_walls"]
+position = Vector2( 260, 148 )
+shape = SubResource( 9 )
+
+[node name="platform7" type="CollisionShape2D" parent="platforms_and_walls"]
+position = Vector2( 124, 196 )
+shape = SubResource( 10 )
+
+[node name="platform8" type="CollisionShape2D" parent="platforms_and_walls"]
+position = Vector2( 260, 196 )
+shape = SubResource( 11 )
+
+[node name="lifts" type="Node" parent="."]
+
+[node name="lift1" parent="lifts" instance=ExtResource( 2 )]
+position = Vector2( 20, 196 )
+
+[node name="lift2" parent="lifts" instance=ExtResource( 2 )]
+position = Vector2( 300, 196 )
+
+[node name="player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 296, 32 )
+z_index = 1
+
