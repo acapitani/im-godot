@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/elevator-top.png-2e117b59f82367946f84c3995280f886.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://tilesets/._platfom-tilesource.png"
+source_file="res://scenes/elevator/elevator-top.png"
+dest_files=[ "res://.import/elevator-top.png-2e117b59f82367946f84c3995280f886.stex" ]
+
 [params]
 
 compress/mode=0
@@ -15,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

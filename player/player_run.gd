@@ -6,7 +6,7 @@ func initialize(obj):
 func run(obj, delta):
 	if (obj.vel.x>0 or obj.vel.x < 0):
 		obj.anim_next = "run"
-	
+		
 	# gravity
 	#obj.vel.y = min( obj.vel.y + game.GRAVITY * delta, game.TERMINAL_VELOCITY )
 	obj.vel.y = obj.vel.y + game.GRAVITY*delta
@@ -40,6 +40,9 @@ func run(obj, delta):
 		#	is_moving = true
 	if not is_moving:
 		obj.fsm.state_next = obj.fsm.STATES.idle
+	
+	if not obj.check_ground():
+		obj.fsm.state_next = obj.fsm.STATES.fall
 	
 	if obj.check_ground():
 		if Input.is_action_just_pressed("btn_jump"):

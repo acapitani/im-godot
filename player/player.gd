@@ -32,6 +32,8 @@ var is_hit = false
 
 var camera_mode = 0
 
+var lift = null
+
 onready var rotate = $rotate
 
 func _ready():
@@ -52,6 +54,7 @@ func _physics_process(delta):
 	else:
 		# update states machine
 		fsm.run_machine(delta)
+		_check_lift()
 		# direction
 		#if vel.x > 0:
 		#	dir_cur = 1
@@ -66,7 +69,7 @@ func _physics_process(delta):
 		# interact
 		#_interact( delta )
 		# platform
-		_platform( delta )
+		#_platform( delta )
 
 #func _process(delta):
 #	_aim_weapon( delta )
@@ -76,6 +79,16 @@ func check_ground():
 		return true
 	return false
 
+func _check_lift():
+	if lift!=null and fsm.state_current!=fsm.STATES.onlift:
+		var lift_moving = false
+		if Input.is_action_just_pressed("btn_up"):
+			lift_moving = lift.move_up()
+		elif Input.is_action_just_pressed("btn_down"):
+			lift_moving = lift.move_down()
+		if lift_moving:
+			fsm.state_next = fsm.STATES.onlift 
+		
 func _interact( delta ):
 	if fsm.state_cur == fsm.STATES.interact: 
 		return
@@ -85,6 +98,7 @@ func _interact( delta ):
 			return
 		print( "Player interacting with area ", interact_area.name )
 		interact_area.interact(self)
+			
 
 func _check_interaction():
 	var areas = $interact_box.get_overlapping_areas()
@@ -123,16 +137,19 @@ func _platform( delta ):
 func _on_hitbox_area_entered( area ):
 	if invulnerable: 
 		return
-	if fsm.state_cur == fsm.STATES.hit or \
-		fsm.state_nxt == fsm.STATES.hit:
+	if fsm.state_current == fsm.STATES.hit or \
+		fsm.state_next == fsm.STATES.hit:
 			return
-	fsm.state_nxt = fsm.STATES.hit
+	fsm.state_next = fsm.STATES.hit
 	pass # replace with function body
 
 func jump_finished():
-	fsm.state_next = fsm.STATES.idle
-	if is_on_floor():
+	if check_ground():
 		vel.x = 0
+		fsm.state_next = fsm.STATES.idle
+	else:
+		fsm.state_next = fsm.STATES.fall
+		
 
 #========================
 # SFX

@@ -19,6 +19,9 @@ func run(obj, delta):
 		obj.fsm.state_next = obj.fsm.STATES.run
 	elif Input.is_action_pressed("btn_jump") and obj.is_on_floor():
 		obj.fsm.state_next = obj.fsm.STATES.jump
+		
+	if not obj.check_ground():
+		obj.fsm.state_next = obj.fsm.STATES.fall
 	
 	if obj.check_ground():
 		pass
