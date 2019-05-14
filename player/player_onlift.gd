@@ -6,6 +6,3 @@ func initialize(obj):
 func run(obj, delta):
 	if obj.lift==null or obj.lift.moving==false:
 		obj.fsm.state_next = obj.fsm.STATES.idle
-	
-		
-	

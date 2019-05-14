@@ -26,9 +26,8 @@ func _get_camera():
 #===========================
 func set_initial_gamestate():
 	gamestate = {
-		"cur_level": "", \
-		"start_position": null, \
-		"coins": 0 }
+		"current_scene": "", \
+		"start_position": null}
 		
 func _set_gamestate( v ):
 	gamestate = v

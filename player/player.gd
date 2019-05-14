@@ -36,6 +36,9 @@ var lift = null
 
 onready var rotate = $rotate
 
+signal exit_left
+signal exit_right
+
 func _ready():
 	# register with game
 	game.player = self
@@ -55,6 +58,7 @@ func _physics_process(delta):
 		# update states machine
 		fsm.run_machine(delta)
 		_check_lift()
+		_check_exit()
 		# direction
 		#if vel.x > 0:
 		#	dir_cur = 1
@@ -89,6 +93,12 @@ func _check_lift():
 		if lift_moving:
 			fsm.state_next = fsm.STATES.onlift 
 		
+func _check_exit():
+	if global_position.x>320:
+		emit_signal("exit_right")
+	elif global_position.x<0:
+		emit_signal("exit_left")
+
 func _interact( delta ):
 	if fsm.state_cur == fsm.STATES.interact: 
 		return

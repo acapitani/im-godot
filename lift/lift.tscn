@@ -19,7 +19,6 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="lift_trigger" type="Area2D" parent="."]
-editor/display_folded = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="lift_trigger"]
 position = Vector2( 0, -2 )

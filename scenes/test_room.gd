@@ -1,13 +1,14 @@
-extends Node2D
+extends "res://scenes/scene.gd"
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	game.gamestate.current_scene = "res://scenes/test_room.tscn"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func _on_player_exit_left():
+	emit_signal("next_scene", "res://scenes/elevator/elevator.tscn" )
+
+func _on_player_exit_right():
+	emit_signal("next_scene", "res://scenes/elevator/elevator.tscn" )
